@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="app_name">Submission1Intermediate</string>
+    <string name="signup">Sign up</string>
+    <string name="login">Sign in</string>
+    <string name="have_account">Have an account already?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="signup_form">Fill your data</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="incomplete_data">Fill your data first</string>
+    <string name="login_message_popup">Ready to learn?</string>
+    <string name="name">Name</string>
+    <string name="logout">Sign Out</string>
+
+    <string name="requires_name">Please fill your name..</string>
+    <string name="requires_email">Please fill your email..</string>
+    <string name="requires_password">Please fill your password..</string>
+    <string name="password_error">Password is less than 6 characters!</string>
+    <string name="login_failed">Login failed</string>
+    <string name="wrong_credentials">Wrong Credentials</string>
+
+    <string name="upload">Upload</string>
+    <string name="no_account">No account yet?</string>
+    <string name="no_data">No Data</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="description_story">input your description</string>
+    <string name="back_to_list">Back to list</string>
+</resources>
