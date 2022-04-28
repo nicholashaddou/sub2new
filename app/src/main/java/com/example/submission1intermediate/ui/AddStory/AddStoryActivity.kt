@@ -1,6 +1,7 @@
 package com.example.submission1intermediate.ui.AddStory
 
 import android.Manifest
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -17,14 +18,14 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.submission1intermediate.R
+import androidx.paging.ExperimentalPagingApi
 import com.example.submission1intermediate.ViewModelFactory
-import com.example.submission1intermediate.data.API.ApiConfig
-import com.example.submission1intermediate.data.preference.UserPreference
-import com.example.submission1intermediate.data.preference.reduceFileImage
-import com.example.submission1intermediate.data.preference.rotateBitmap
-import com.example.submission1intermediate.data.preference.uriToFile
-import com.example.submission1intermediate.data.response.StoryResponse
+import com.example.submission1intermediate.background.API.ApiConfig
+import com.example.submission1intermediate.background.preference.UserPreference
+import com.example.submission1intermediate.background.preference.reduceFileImage
+import com.example.submission1intermediate.background.preference.rotateBitmap
+import com.example.submission1intermediate.background.preference.uriToFile
+import com.example.submission1intermediate.background.response.StoryResponse
 import com.example.submission1intermediate.databinding.ActivityAddStoryBinding
 import com.example.submission1intermediate.ui.CameraActivity
 import com.example.submission1intermediate.ui.MainActivity
@@ -41,6 +42,7 @@ import java.io.File
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
+@ExperimentalPagingApi
 class AddStoryActivity : AppCompatActivity() {private var _binding : ActivityAddStoryBinding? = null
 
     private val binding get() = _binding!!
@@ -60,7 +62,7 @@ class AddStoryActivity : AppCompatActivity() {private var _binding : ActivityAdd
 
         addStoryViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            ViewModelFactory(UserPreference.getInstance(dataStore), this)
         )[AddStoryViewModel::class.java]
 
         if (!allPermissionsGranted()) {
@@ -97,7 +99,7 @@ class AddStoryActivity : AppCompatActivity() {private var _binding : ActivityAdd
                 requestImageFile
             )
 
-            val service = ApiConfig.getApiService().postStory("Bearer $token",description,imageMultipart)
+            val service = ApiConfig.getApiService().postStory("Bearer $token",description,imageMultipart,null,null)
 
             service.enqueue(object : Callback<StoryResponse> {
                 override fun onResponse(
@@ -108,6 +110,7 @@ class AddStoryActivity : AppCompatActivity() {private var _binding : ActivityAdd
                         val responseBody = response.body()
                         if (responseBody != null && !responseBody.error) {
                             Toast.makeText(this@AddStoryActivity, responseBody.message, Toast.LENGTH_SHORT).show()
+                            Log.d(TAG, "onResponseAddStory: ${responseBody.error}")
                             startActivity(Intent(this@AddStoryActivity, MainActivity::class.java))
                         }
                     } else {

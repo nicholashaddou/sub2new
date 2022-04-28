@@ -13,9 +13,11 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.example.submission1intermediate.data.preference.createFile
+import androidx.paging.ExperimentalPagingApi
+import com.example.submission1intermediate.background.preference.createFile
 import com.example.submission1intermediate.databinding.ActivityCameraBinding
 
+@ExperimentalPagingApi
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null

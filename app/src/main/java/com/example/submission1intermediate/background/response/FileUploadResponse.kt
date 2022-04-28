@@ -1,4 +1,4 @@
-package com.example.submission1intermediate.data.response
+package com.example.submission1intermediate.background.response
 
 
 data class FileUploadResponse(

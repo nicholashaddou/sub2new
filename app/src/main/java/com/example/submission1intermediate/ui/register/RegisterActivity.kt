@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.ExperimentalPagingApi
 import com.example.submission1intermediate.R
 import com.example.submission1intermediate.databinding.ActivityRegisterBinding
 import com.example.submission1intermediate.ui.login.LoginActivity
 
+@ExperimentalPagingApi
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var registerViewModel: RegisterViewModel

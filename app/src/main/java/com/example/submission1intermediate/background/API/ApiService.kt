@@ -1,8 +1,8 @@
-package com.example.submission1intermediate.data.API
+package com.example.submission1intermediate.background.API
 
-import com.example.submission1intermediate.data.response.FileUploadResponse
-import com.example.submission1intermediate.data.response.LoginResponse
-import com.example.submission1intermediate.data.response.StoryResponse
+import com.example.submission1intermediate.background.response.FileUploadResponse
+import com.example.submission1intermediate.background.response.LoginResponse
+import com.example.submission1intermediate.background.response.StoryResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -25,15 +25,20 @@ interface ApiService {
     ): Call<LoginResponse>
 
     @GET("stories")
-    fun getStories(
-        @Header("Authorization") token: String
-    ) : Call<StoryResponse>
+    suspend fun getStories(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+        @Query("location") location: Int? = null
+    ) : StoryResponse
 
     @Multipart
     @POST("stories")
     fun postStory(
         @Header("Authorization") token: String,
         @Part("description") description: RequestBody,
-        @Part photo: MultipartBody.Part
+        @Part photo: MultipartBody.Part,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?
     ): Call<StoryResponse>
 }

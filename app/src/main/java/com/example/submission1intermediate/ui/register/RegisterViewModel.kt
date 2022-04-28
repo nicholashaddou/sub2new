@@ -1,13 +1,11 @@
 package com.example.submission1intermediate.ui.register
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.submission1intermediate.R
-import com.example.submission1intermediate.data.API.ApiConfig
-import com.example.submission1intermediate.data.response.FileUploadResponse
+import com.example.submission1intermediate.background.API.ApiConfig
+import com.example.submission1intermediate.background.response.FileUploadResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

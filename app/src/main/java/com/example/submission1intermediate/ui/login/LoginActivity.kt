@@ -6,24 +6,24 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.ExperimentalPagingApi
 import com.example.submission1intermediate.R
 import com.example.submission1intermediate.ViewModelFactory
-import com.example.submission1intermediate.data.UserModel
-import com.example.submission1intermediate.data.preference.UserPreference
+import com.example.submission1intermediate.background.UserModel
+import com.example.submission1intermediate.background.preference.UserPreference
 import com.example.submission1intermediate.databinding.ActivityLoginBinding
 import com.example.submission1intermediate.ui.MainActivity
 import com.example.submission1intermediate.ui.register.RegisterActivity
 
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-
+@ExperimentalPagingApi
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
@@ -96,14 +96,12 @@ class LoginActivity : AppCompatActivity() {
     private fun setupViewModel(){
         loginViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            ViewModelFactory(UserPreference.getInstance(dataStore),this)
         )[LoginViewModel::class.java]
 
         loginViewModel.getUser().observe(this) { user ->
-            Log.d("berhasil Login: ", user.token)
             this.user = user
 
-            Log.d("LoginActivity", "Token: ${user.token}")
             if (this.user.isLogin) {
                 Intent(this@LoginActivity, MainActivity::class.java).let {
                     it.putExtra(MainActivity.EXTRA_TOKEN, user.token)
@@ -129,8 +127,5 @@ class LoginActivity : AppCompatActivity() {
             binding.pgSignin.visibility = View.GONE
             binding.loginButton.isEnabled = true
         }
-    }
-    companion object{
-        val TAG ="ActivityLogin"
     }
 }

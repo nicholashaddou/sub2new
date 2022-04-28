@@ -1,4 +1,4 @@
-package com.example.submission1intermediate.data.preference
+package com.example.submission1intermediate.background.preference
 
 import android.app.Application
 import android.content.ContentResolver

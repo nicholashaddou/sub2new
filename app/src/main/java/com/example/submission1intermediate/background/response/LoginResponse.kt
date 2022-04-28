@@ -1,6 +1,4 @@
-package com.example.submission1intermediate.data.response
-
-import com.google.gson.annotations.SerializedName
+package com.example.submission1intermediate.background.response
 
 data class LoginResponse(
     val loginResult:LoginResult,

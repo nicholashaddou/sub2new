@@ -1,4 +1,4 @@
-package com.example.submission1intermediate.data
+package com.example.submission1intermediate.background
 
 data class UserModel(
     val userId: String,

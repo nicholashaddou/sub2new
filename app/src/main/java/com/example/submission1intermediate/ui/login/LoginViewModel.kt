@@ -3,10 +3,10 @@ package com.example.submission1intermediate.ui.login
 import android.content.Context
 import androidx.lifecycle.*
 import com.example.submission1intermediate.R
-import com.example.submission1intermediate.data.API.ApiConfig
-import com.example.submission1intermediate.data.UserModel
-import com.example.submission1intermediate.data.preference.UserPreference
-import com.example.submission1intermediate.data.response.LoginResponse
+import com.example.submission1intermediate.background.API.ApiConfig
+import com.example.submission1intermediate.background.UserModel
+import com.example.submission1intermediate.background.preference.UserPreference
+import com.example.submission1intermediate.background.response.LoginResponse
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
