@@ -1,3 +1,3 @@
-# Submission_1_Intermediate
+# Submission_2
 
-App for submission 1 dicoding intermediate android
+App for submission 2 dicoding intermediate android
